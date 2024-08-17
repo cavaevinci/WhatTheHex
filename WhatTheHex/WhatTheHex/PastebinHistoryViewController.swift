@@ -15,6 +15,8 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
     private var blurEffectView: UIVisualEffectView!
     
     let tableView = UITableView()
+    
+    private var colorHistory: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +27,18 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(PastebinHistoryTableViewCell.self, forCellReuseIdentifier: "PastebinHistoryCell")
         
         setupCamera()
         setupBlurEffect()
+        loadColorHistory()
+    }
+    
+    private func loadColorHistory() {
+        colorHistory = ColorHistoryService.shared.getColorHistory()
+        print(" COLOR HISTORY_--", colorHistory)
+        tableView.reloadData()
     }
     
     func setupConstraints() {
@@ -74,7 +84,7 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(blurEffectView)
-        view.bringSubviewToFront(blurEffectView) // Make sure blur view is above previewLayer
+        view.bringSubviewToFront(blurEffectView)
         view.addSubview(tableView)
         view.bringSubviewToFront(tableView)
         setupConstraints()
@@ -83,12 +93,12 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
     // MARK: - UITableViewDataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5//services.count
+        return colorHistory.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PastebinHistoryCell", for: indexPath) as! PastebinHistoryTableViewCell
-        cell.configure(with: "test")
+        cell.configure(with: colorHistory[indexPath.row])
         return cell
     }
     

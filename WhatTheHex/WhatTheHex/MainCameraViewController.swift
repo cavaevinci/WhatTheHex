@@ -78,6 +78,7 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
     @objc func copyHexToClipboard() {
         if let hexString = colorHexLabel.text {
             UIPasteboard.general.string = hexString
+            ColorHistoryService.shared.saveColor(hexString: hexString)
             showCustomNotification(message: "Color \(hexString) copied to clipboard.")
         }
     }
