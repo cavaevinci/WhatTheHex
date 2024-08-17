@@ -29,6 +29,19 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         return view
     }()
     
+    // Create crosshair views
+    let horizontalLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
+    }()
+    
+    let verticalLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
+    }()
+    
     var previewLayer: AVCaptureVideoPreviewLayer!
     
     var captureSession: AVCaptureSession!
@@ -40,17 +53,26 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func setupConstraints() {
-        
-        dotView.snp.makeConstraints { (make) in
-            make.height.width.equalTo(20)
+        let lineThickness: CGFloat = 2.0
+                
+        // Setup crosshair constraints
+        horizontalLine.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
+            make.width.equalTo(50)
+            make.height.equalTo(lineThickness)
         }
-        dotView.layer.cornerRadius = 10
+        
+        verticalLine.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.height.equalTo(50)
+            make.width.equalTo(lineThickness)
+        }
         
         colorHexLabel.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.top.equalTo(dotView.snp.bottom).offset(40)
+            make.top.equalTo(horizontalLine.snp.bottom).offset(40)
         }
         
         colorView.snp.makeConstraints { (make) in
@@ -107,7 +129,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
-        view.addSubview(dotView)
+
+        view.addSubview(horizontalLine)
+        view.addSubview(verticalLine)
         view.addSubview(colorHexLabel)
         view.addSubview(colorView)
 
@@ -142,7 +166,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
 
         DispatchQueue.main.async {
-            // Calculate the center of the dotView relative to the camera feed
+            // Calculate the center of the crosshair relative to the camera feed
             let viewSize = self.view.bounds.size
             let previewSize = self.previewLayer.bounds.size
             let center = CGPoint(x: viewSize.width / 2, y: viewSize.height / 2)
