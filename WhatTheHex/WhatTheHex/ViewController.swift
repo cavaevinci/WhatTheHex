@@ -15,7 +15,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 0
-        label.text = "COLOUR IN HEX"
         return label
     }()
     
@@ -142,63 +141,61 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             return
         }
 
-        // Calculate the center of the dotView relative to the camera feed
-        let viewSize = view.bounds.size
-        let previewSize = previewLayer.bounds.size
-        let center = CGPoint(x: viewSize.width / 2, y: viewSize.height / 2)
-        let previewCenter = CGPoint(x: previewSize.width / 2, y: previewSize.height / 2)
-
-        let dotCenter = CGPoint(x: previewCenter.x + (center.x - previewCenter.x),
-                                y: previewCenter.y + (center.y - previewCenter.y))
-
-        let scaleFactorX = CGFloat(cgImage.width) / previewSize.width
-        let scaleFactorY = CGFloat(cgImage.height) / previewSize.height
-        let scaledCenter = CGPoint(x: dotCenter.x * scaleFactorX,
-                                   y: dotCenter.y * scaleFactorY)
-
-        // Define the region around the center to average
-        let regionSize: CGFloat = 10.0
-        let minX = max(Int(scaledCenter.x - regionSize / 2), 0)
-        let minY = max(Int(scaledCenter.y - regionSize / 2), 0)
-        let maxX = min(Int(scaledCenter.x + regionSize / 2), cgImage.width)
-        let maxY = min(Int(scaledCenter.y + regionSize / 2), cgImage.height)
-
-        guard let pixelData = cgImage.dataProvider?.data else {
-            return
-        }
-        let data = CFDataGetBytePtr(pixelData)
-        let bytesPerPixel = 4
-        let bytesPerRow = cgImage.bytesPerRow
-
-        // Variables to store the sum of RGB values
-        var rTotal: CGFloat = 0
-        var gTotal: CGFloat = 0
-        var bTotal: CGFloat = 0
-        var pixelCount: Int = 0
-
-        for x in minX..<maxX {
-            for y in minY..<maxY {
-                let pixelIndex = y * bytesPerRow + x * bytesPerPixel
-                rTotal += CGFloat(data?[pixelIndex] ?? 0)
-                gTotal += CGFloat(data?[pixelIndex + 1] ?? 0)
-                bTotal += CGFloat(data?[pixelIndex + 2] ?? 0)
-                pixelCount += 1
-            }
-        }
-
-        // Calculate the average color
-        let rAvg = rTotal / CGFloat(pixelCount)
-        let gAvg = gTotal / CGFloat(pixelCount)
-        let bAvg = bTotal / CGFloat(pixelCount)
-
-        let color = UIColor(red: rAvg / 255.0, green: gAvg / 255.0, blue: bAvg / 255.0, alpha: 1.0)
-        let hexString = String(format: "#%02X%02X%02X", Int(rAvg), Int(gAvg), Int(bAvg))
-
         DispatchQueue.main.async {
-            print(" HEX STRING ---", hexString)
+            // Calculate the center of the dotView relative to the camera feed
+            let viewSize = self.view.bounds.size
+            let previewSize = self.previewLayer.bounds.size
+            let center = CGPoint(x: viewSize.width / 2, y: viewSize.height / 2)
+            let previewCenter = CGPoint(x: previewSize.width / 2, y: previewSize.height / 2)
+
+            let dotCenter = CGPoint(x: previewCenter.x + (center.x - previewCenter.x),
+                                    y: previewCenter.y + (center.y - previewCenter.y))
+
+            let scaleFactorX = CGFloat(cgImage.width) / previewSize.width
+            let scaleFactorY = CGFloat(cgImage.height) / previewSize.height
+            let scaledCenter = CGPoint(x: dotCenter.x * scaleFactorX,
+                                       y: dotCenter.y * scaleFactorY)
+
+            // Define the region around the center to average
+            let regionSize: CGFloat = 10.0
+            let minX = max(Int(scaledCenter.x - regionSize / 2), 0)
+            let minY = max(Int(scaledCenter.y - regionSize / 2), 0)
+            let maxX = min(Int(scaledCenter.x + regionSize / 2), cgImage.width)
+            let maxY = min(Int(scaledCenter.y + regionSize / 2), cgImage.height)
+
+            guard let pixelData = cgImage.dataProvider?.data else {
+                return
+            }
+            let data = CFDataGetBytePtr(pixelData)
+            let bytesPerPixel = 4
+            let bytesPerRow = cgImage.bytesPerRow
+
+            // Variables to store the sum of RGB values
+            var rTotal: CGFloat = 0
+            var gTotal: CGFloat = 0
+            var bTotal: CGFloat = 0
+            var pixelCount: Int = 0
+
+            for x in minX..<maxX {
+                for y in minY..<maxY {
+                    let pixelIndex = y * bytesPerRow + x * bytesPerPixel
+                    rTotal += CGFloat(data?[pixelIndex] ?? 0)
+                    gTotal += CGFloat(data?[pixelIndex + 1] ?? 0)
+                    bTotal += CGFloat(data?[pixelIndex + 2] ?? 0)
+                    pixelCount += 1
+                }
+            }
+
+            // Calculate the average color
+            let rAvg = rTotal / CGFloat(pixelCount)
+            let gAvg = gTotal / CGFloat(pixelCount)
+            let bAvg = bTotal / CGFloat(pixelCount)
+
+            let color = UIColor(red: rAvg / 255.0, green: gAvg / 255.0, blue: bAvg / 255.0, alpha: 1.0)
+            let hexString = String(format: "#%02X%02X%02X", Int(rAvg), Int(gAvg), Int(bAvg))
+
             self.colorHexLabel.text = hexString
             self.colorView.backgroundColor = color
         }
     }
-
 }
