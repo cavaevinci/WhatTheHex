@@ -31,12 +31,9 @@ class TabController: UITabBarController, UITabBarControllerDelegate {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        // Check if the selected item is the "Camera" tab
         if item.title == "Camera" {
-            // Check if the currently visible view controller is MainCameraViewController
             if let navController = selectedViewController as? UINavigationController,
                let cameraVC = navController.topViewController as? MainCameraViewController {
-                // Call the toggleCamera method to switch the camera
                 cameraVC.toggleCamera()
             }
         }
