@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainCameraViewController.swift
 //  WhatTheHex
 //
 //  Created by Ivan Evačić on 12.08.2024..
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import AVFoundation
 
-class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     let colorHexLabel: UILabel = {
         let label = UILabel()
@@ -64,10 +64,39 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     @objc func copyHexToClipboard() {
         if let hexString = colorHexLabel.text {
             UIPasteboard.general.string = hexString
-            let alert = UIAlertController(title: "Copied!", message: "Color \(hexString) copied to clipboard.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alert, animated: true)
+            showCustomNotification(message: "Color \(hexString) copied to clipboard.")
         }
+    }
+    
+    func showCustomNotification(message: String) {
+        let notificationLabel = UILabel()
+        notificationLabel.backgroundColor = .black
+        notificationLabel.textColor = .white
+        notificationLabel.text = message
+        notificationLabel.textAlignment = .center
+        notificationLabel.alpha = 0
+        notificationLabel.numberOfLines = 0
+        notificationLabel.layer.cornerRadius = 5
+        notificationLabel.layer.masksToBounds = true
+        notificationLabel.font = UIFont.systemFont(ofSize: 16)
+        
+        view.addSubview(notificationLabel)
+        
+        notificationLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(verticalLine.snp.top).offset(-25)
+            make.leading.trailing.equalToSuperview().inset(25)
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            notificationLabel.alpha = 1
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.3, delay: 2.0, options: [], animations: {
+                notificationLabel.alpha = 0
+            }, completion: { _ in
+                notificationLabel.removeFromSuperview()
+            })
+        })
     }
     
     func getCamera(for position: AVCaptureDevice.Position) -> AVCaptureDevice? {
