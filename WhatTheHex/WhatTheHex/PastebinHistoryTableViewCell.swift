@@ -11,7 +11,7 @@ class PastebinHistoryTableViewCell: UITableViewCell {
     
     let historyLabel = UILabel()
     let colorSquareView = UIView()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
@@ -43,7 +43,6 @@ class PastebinHistoryTableViewCell: UITableViewCell {
     }
     
     func configure(with color: String) {
-        print(" color --", color)
         historyLabel.text =  color
         colorSquareView.backgroundColor = UIColor(hexString: color)
     }

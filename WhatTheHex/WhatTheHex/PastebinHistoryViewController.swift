@@ -40,9 +40,40 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
         loadColorHistory()
     }
     
+    func showCustomNotification(message: String) {
+        let notificationLabel = UILabel()
+        notificationLabel.backgroundColor = .black
+        notificationLabel.textColor = .white
+        notificationLabel.text = message
+        notificationLabel.textAlignment = .center
+        notificationLabel.alpha = 0
+        notificationLabel.numberOfLines = 0
+        notificationLabel.layer.cornerRadius = 5
+        notificationLabel.layer.masksToBounds = true
+        notificationLabel.font = UIFont.systemFont(ofSize: 16)
+        
+        view.addSubview(notificationLabel)
+        
+        notificationLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            //make.bottom.equalTo(verticalLine.snp.top).offset(-25)
+            make.leading.trailing.equalToSuperview().inset(25)
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            notificationLabel.alpha = 1
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.3, delay: 2.0, options: [], animations: {
+                notificationLabel.alpha = 0
+            }, completion: { _ in
+                notificationLabel.removeFromSuperview()
+            })
+        })
+    }
+    
     private func loadColorHistory() {
         colorHistory = ColorHistoryService.shared.getColorHistory()
-        print(" COLOR HISTORY_--", colorHistory)
         tableView.reloadData()
     }
     
@@ -109,6 +140,8 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        UIPasteboard.general.string = colorHistory[indexPath.row]
+        showCustomNotification(message: "Color \(colorHistory[indexPath.row]) copied to clipboard.")
     }
 }
 

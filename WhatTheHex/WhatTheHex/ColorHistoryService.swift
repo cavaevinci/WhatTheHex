@@ -19,11 +19,9 @@ class ColorHistoryService {
     func saveColor(hexString: String) {
         colorHistory.insert(hexString)
         saveToUserDefaults()
-        print(" SAVE COLOR ---", hexString)
     }
 
     func getColorHistory() -> [String] {
-        print(" GET COLOR HISTORY ---", Array(colorHistory))
         return Array(colorHistory)
     }
 
@@ -33,7 +31,6 @@ class ColorHistoryService {
 
     private func loadFromUserDefaults() {
         if let savedColors = UserDefaults.standard.array(forKey: "colorHistory") as? [String] {
-            print("loadFromUserDefaults", savedColors)
             colorHistory = Set(savedColors)
         }
     }
