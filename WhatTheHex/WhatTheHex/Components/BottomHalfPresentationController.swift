@@ -22,11 +22,9 @@ class BottomHalfPresentationController: UIPresentationController {
     override func presentationTransitionWillBegin() {
         super.presentationTransitionWillBegin()
 
-        // Add a dimming view to the background
         containerView?.insertSubview(dimmingView, at: 0)
         dimmingView.alpha = 0
 
-        // Animate the dimming view alongside the presentation
         presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
             self.dimmingView.alpha = 0.5
         }, completion: nil)
@@ -36,14 +34,12 @@ class BottomHalfPresentationController: UIPresentationController {
     }
     
     @objc func handleTapGesture(_ gesture: UITapGestureRecognizer) {
-        // Dismiss the presented view controller when the dimming view is tapped
         presentedViewController.dismiss(animated: true, completion: nil)
     }
 
     override func dismissalTransitionWillBegin() {
         super.dismissalTransitionWillBegin()
 
-        // Animate the dimming view out alongside the dismissal
         presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
             self.dimmingView.alpha = 0
         }, completion: { _ in
@@ -51,7 +47,6 @@ class BottomHalfPresentationController: UIPresentationController {
         })
     }
 
-    // Dimming view to cover the background
     lazy var dimmingView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(white: 0, alpha: 0.5)

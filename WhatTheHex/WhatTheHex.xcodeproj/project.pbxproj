@@ -29,6 +29,9 @@
 		1EBF37842C716DCA005C3221 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF37832C716DCA005C3221 /* NotificationService.swift */; };
 		1EBF37852C716DCA005C3221 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF37832C716DCA005C3221 /* NotificationService.swift */; };
 		1EBF37862C716DCA005C3221 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF37832C716DCA005C3221 /* NotificationService.swift */; };
+		1EBF37892C716FAF005C3221 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF37882C716FAF005C3221 /* UIColor+Extension.swift */; };
+		1EBF378A2C716FAF005C3221 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF37882C716FAF005C3221 /* UIColor+Extension.swift */; };
+		1EBF378B2C716FAF005C3221 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF37882C716FAF005C3221 /* UIColor+Extension.swift */; };
 		1EFF654B2C70EB0600085E61 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1EFF654A2C70EB0600085E61 /* SnapKit */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,7 @@
 		1EB5703E2C6A5CCD0071256B /* WhatTheHexUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatTheHexUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1EBF377F2C716D9B005C3221 /* BottomHalfPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfPresentationController.swift; sourceTree = "<group>"; };
 		1EBF37832C716DCA005C3221 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		1EBF37882C716FAF005C3221 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 		1EB5701A2C6A5CCA0071256B /* WhatTheHex */ = {
 			isa = PBXGroup;
 			children = (
+				1EBF37872C716FA3005C3221 /* Extensions */,
 				1EBF377E2C716D74005C3221 /* Components */,
 				1EBF377D2C716D70005C3221 /* Scenes */,
 				1EBF377C2C716D6B005C3221 /* Services */,
@@ -174,6 +179,14 @@
 				1EBF377F2C716D9B005C3221 /* BottomHalfPresentationController.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		1EBF37872C716FA3005C3221 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1EBF37882C716FAF005C3221 /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +334,7 @@
 				1EB5701C2C6A5CCA0071256B /* AppDelegate.swift in Sources */,
 				1EB5701E2C6A5CCA0071256B /* SceneDelegate.swift in Sources */,
 				1E6DFBCF2C71260100272092 /* PastebinHistoryTableViewCell.swift in Sources */,
+				1EBF37892C716FAF005C3221 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +345,7 @@
 				1E6DFBD42C712B7B00272092 /* TabController.swift in Sources */,
 				1EBF37812C716D9B005C3221 /* BottomHalfPresentationController.swift in Sources */,
 				1E6DFBD82C71424C00272092 /* ColorHistoryService.swift in Sources */,
+				1EBF378A2C716FAF005C3221 /* UIColor+Extension.swift in Sources */,
 				1EBF37852C716DCA005C3221 /* NotificationService.swift in Sources */,
 				1EB570332C6A5CCD0071256B /* WhatTheHexTests.swift in Sources */,
 			);
@@ -340,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EBF378B2C716FAF005C3221 /* UIColor+Extension.swift in Sources */,
 				1EBF37822C716D9B005C3221 /* BottomHalfPresentationController.swift in Sources */,
 				1E6DFBD52C712B7B00272092 /* TabController.swift in Sources */,
 				1E6DFBD92C71424C00272092 /* ColorHistoryService.swift in Sources */,

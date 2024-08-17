@@ -11,7 +11,7 @@ import AVFoundation
 
 class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    let colorHexLabel: UILabel = {
+    lazy var colorHexLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 0
@@ -19,17 +19,18 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
         return label
     }()
 
-    let colorView: UIView = {
+    lazy var colorView: UIView = {
         let view = UIView()
         return view
     }()
     
-    let horizontalLine: UIView = {
+    lazy var horizontalLine: UIView = {
         let view = UIView()
         view.backgroundColor = .black
         return view
     }()
-    let verticalLine: UIView = {
+    
+    lazy var verticalLine: UIView = {
         let view = UIView()
         view.backgroundColor = .black
         return view
@@ -38,7 +39,6 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
     var isUsingFrontCamera = false
     
     var previewLayer: AVCaptureVideoPreviewLayer!
-    
     var captureSession: AVCaptureSession!
     var lastUpdateTime: Date?
         
@@ -98,17 +98,14 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
             return
         }
         
-        // Determine the new camera position
         let newCameraPosition: AVCaptureDevice.Position = isUsingFrontCamera ? .back : .front
         isUsingFrontCamera = !isUsingFrontCamera
         
-        // Get the new camera device
         guard let newCamera = getCamera(for: newCameraPosition) else {
             print("No camera available")
             return
         }
         
-        // Remove the old input and add the new one
         captureSession.beginConfiguration()
         captureSession.removeInput(currentInput)
         guard let newInput = try? AVCaptureDeviceInput(device: newCamera) else {

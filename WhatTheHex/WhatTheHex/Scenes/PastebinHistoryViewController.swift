@@ -14,7 +14,7 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
     private var captureSession: AVCaptureSession!
     private var blurEffectView: UIVisualEffectView!
     
-    let tableView = UITableView()
+    lazy var tableView = UITableView()
     
     private var colorHistory: [String] = []
 
@@ -80,7 +80,6 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
 
-        // Start running the session on a background thread
         DispatchQueue.global(qos: .background).async {
             self.captureSession.startRunning()
         }
@@ -97,8 +96,6 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
         view.bringSubviewToFront(tableView)
         setupConstraints()
     }
-
-    // MARK: - UITableViewDataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return colorHistory.count
@@ -125,6 +122,6 @@ extension PastebinHistoryViewController: UIViewControllerTransitioningDelegate {
 
 extension PastebinHistoryViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        // Handle any frame processing here if needed
+        
     }
 }

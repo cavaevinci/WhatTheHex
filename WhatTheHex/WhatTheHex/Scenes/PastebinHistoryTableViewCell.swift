@@ -9,21 +9,37 @@ import UIKit
 
 class PastebinHistoryTableViewCell: UITableViewCell {
     
-    let historyLabel = UILabel()
-    let colorSquareView = UIView()
+    lazy var historyLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .black
+        return label
+    }()
+    
+    lazy var colorSquareView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
+        return view
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = .clear
+        setupUI()
+    }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupUI() {
+        self.backgroundColor = .clear
         contentView.addSubview(historyLabel)
         contentView.addSubview(colorSquareView)
-        
-        colorSquareView.layer.cornerRadius = 5
-        colorSquareView.clipsToBounds = true
-
-        historyLabel.numberOfLines = 0
-        historyLabel.textColor = .black
+        setupConstraints()
+    }
+    
+    func setupConstraints() {
         historyLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(10)
@@ -37,30 +53,9 @@ class PastebinHistoryTableViewCell: UITableViewCell {
             make.width.height.equalTo(30)
         }
     }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     func configure(with color: String) {
         historyLabel.text =  color
         colorSquareView.backgroundColor = UIColor(hexString: color)
     }
 }
-
-extension UIColor {
-    convenience init?(hexString: String) {
-        var hexSanitized = hexString.trimmingCharacters(in: .whitespacesAndNewlines)
-        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
-
-        var rgb: UInt64 = 0
-        guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else { return nil }
-
-        let red = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
-        let green = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
-        let blue = CGFloat(rgb & 0x0000FF) / 255.0
-
-        self.init(red: red, green: green, blue: blue, alpha: 1.0)
-    }
-}
-
