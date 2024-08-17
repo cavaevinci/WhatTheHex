@@ -7,12 +7,12 @@
 
 import UIKit
 
-class TabController: UITabBarController {
+class TabController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTabs()
-        
+        self.delegate = self
         self.tabBar.tintColor = .black
         self.tabBar.unselectedItemTintColor = .white
     }
@@ -28,5 +28,17 @@ class TabController: UITabBarController {
         nav.tabBarItem.title = title
         nav.tabBarItem.image = image
         return nav
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        // Check if the selected item is the "Camera" tab
+        if item.title == "Camera" {
+            // Check if the currently visible view controller is MainCameraViewController
+            if let navController = selectedViewController as? UINavigationController,
+               let cameraVC = navController.topViewController as? MainCameraViewController {
+                // Call the toggleCamera method to switch the camera
+                cameraVC.toggleCamera()
+            }
+        }
     }
 }
