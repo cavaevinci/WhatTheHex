@@ -43,8 +43,9 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
     
     let toggleCameraButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Toggle Camera", for: .normal)
-        button.addTarget(self, action: #selector(toggleCamera), for: .touchUpInside)
+        let image = UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill")?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+        button.tintColor = .white
         return button
     }()
     var isUsingFrontCamera = false
@@ -58,6 +59,7 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
         super.viewDidLoad()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(copyHexToClipboard))
         colorHexLabel.addGestureRecognizer(tapGesture)
+        toggleCameraButton.addTarget(self, action: #selector(toggleCamera), for: .touchUpInside)
         checkCameraPermission()
     }
     
@@ -129,7 +131,7 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
         captureSession.removeInput(currentInput)
         guard let newInput = try? AVCaptureDeviceInput(device: newCamera) else {
             print("Error creating new capture device input")
-            captureSession.addInput(currentInput) // Re-add the old input in case of failure
+            captureSession.addInput(currentInput)
             captureSession.commitConfiguration()
             return
         }
@@ -168,9 +170,7 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
         
         toggleCameraButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
-            make.height.equalTo(44)
-            make.width.equalTo(200)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
         }
 
     }
