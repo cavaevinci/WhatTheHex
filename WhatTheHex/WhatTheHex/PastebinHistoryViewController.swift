@@ -32,6 +32,11 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
         
         setupCamera()
         setupBlurEffect()
+        //loadColorHistory()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadColorHistory()
     }
     
