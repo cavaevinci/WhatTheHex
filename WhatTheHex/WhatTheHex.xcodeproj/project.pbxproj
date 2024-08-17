@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E6DFBCD2C71255B00272092 /* PastebinHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBCC2C71255B00272092 /* PastebinHistoryViewController.swift */; };
+		1E6DFBCF2C71260100272092 /* PastebinHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBCE2C71260100272092 /* PastebinHistoryTableViewCell.swift */; };
+		1E6DFBD02C71260100272092 /* PastebinHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBCE2C71260100272092 /* PastebinHistoryTableViewCell.swift */; };
+		1E6DFBD12C71260100272092 /* PastebinHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBCE2C71260100272092 /* PastebinHistoryTableViewCell.swift */; };
+		1E6DFBD32C712B7B00272092 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBD22C712B7B00272092 /* TabController.swift */; };
+		1E6DFBD42C712B7B00272092 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBD22C712B7B00272092 /* TabController.swift */; };
+		1E6DFBD52C712B7B00272092 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBD22C712B7B00272092 /* TabController.swift */; };
 		1EB5701C2C6A5CCA0071256B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB5701B2C6A5CCA0071256B /* AppDelegate.swift */; };
 		1EB5701E2C6A5CCA0071256B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB5701D2C6A5CCA0071256B /* SceneDelegate.swift */; };
 		1EB570202C6A5CCA0071256B /* MainCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB5701F2C6A5CCA0071256B /* MainCameraViewController.swift */; };
-		1EB570232C6A5CCA0071256B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1EB570222C6A5CCA0071256B /* Base */; };
 		1EB570252C6A5CCD0071256B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EB570242C6A5CCD0071256B /* Assets.xcassets */; };
 		1EB570282C6A5CCD0071256B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1EB570272C6A5CCD0071256B /* Base */; };
 		1EB570332C6A5CCD0071256B /* WhatTheHexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB570322C6A5CCD0071256B /* WhatTheHexTests.swift */; };
@@ -37,11 +43,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E6DFBCC2C71255B00272092 /* PastebinHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastebinHistoryViewController.swift; sourceTree = "<group>"; };
+		1E6DFBCE2C71260100272092 /* PastebinHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastebinHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		1E6DFBD22C712B7B00272092 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		1EB570182C6A5CCA0071256B /* WhatTheHex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatTheHex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB5701B2C6A5CCA0071256B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EB5701D2C6A5CCA0071256B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1EB5701F2C6A5CCA0071256B /* MainCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCameraViewController.swift; sourceTree = "<group>"; };
-		1EB570222C6A5CCA0071256B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1EB570242C6A5CCD0071256B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EB570272C6A5CCD0071256B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1EB570292C6A5CCD0071256B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,10 +112,12 @@
 				1EB5701B2C6A5CCA0071256B /* AppDelegate.swift */,
 				1EB5701D2C6A5CCA0071256B /* SceneDelegate.swift */,
 				1EB5701F2C6A5CCA0071256B /* MainCameraViewController.swift */,
-				1EB570212C6A5CCA0071256B /* Main.storyboard */,
 				1EB570242C6A5CCD0071256B /* Assets.xcassets */,
 				1EB570262C6A5CCD0071256B /* LaunchScreen.storyboard */,
 				1EB570292C6A5CCD0071256B /* Info.plist */,
+				1E6DFBCC2C71255B00272092 /* PastebinHistoryViewController.swift */,
+				1E6DFBCE2C71260100272092 /* PastebinHistoryTableViewCell.swift */,
+				1E6DFBD22C712B7B00272092 /* TabController.swift */,
 			);
 			path = WhatTheHex;
 			sourceTree = "<group>";
@@ -241,7 +251,6 @@
 			files = (
 				1EB570252C6A5CCD0071256B /* Assets.xcassets in Resources */,
 				1EB570282C6A5CCD0071256B /* Base in Resources */,
-				1EB570232C6A5CCA0071256B /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,8 +276,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EB570202C6A5CCA0071256B /* MainCameraViewController.swift in Sources */,
+				1E6DFBD32C712B7B00272092 /* TabController.swift in Sources */,
+				1E6DFBCD2C71255B00272092 /* PastebinHistoryViewController.swift in Sources */,
 				1EB5701C2C6A5CCA0071256B /* AppDelegate.swift in Sources */,
 				1EB5701E2C6A5CCA0071256B /* SceneDelegate.swift in Sources */,
+				1E6DFBCF2C71260100272092 /* PastebinHistoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +288,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E6DFBD02C71260100272092 /* PastebinHistoryTableViewCell.swift in Sources */,
+				1E6DFBD42C712B7B00272092 /* TabController.swift in Sources */,
 				1EB570332C6A5CCD0071256B /* WhatTheHexTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,6 +298,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E6DFBD12C71260100272092 /* PastebinHistoryTableViewCell.swift in Sources */,
+				1E6DFBD52C712B7B00272092 /* TabController.swift in Sources */,
 				1EB5703F2C6A5CCD0071256B /* WhatTheHexUITestsLaunchTests.swift in Sources */,
 				1EB5703D2C6A5CCD0071256B /* WhatTheHexUITests.swift in Sources */,
 			);
@@ -305,14 +321,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1EB570212C6A5CCA0071256B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1EB570222C6A5CCA0071256B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1EB570262C6A5CCD0071256B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -453,6 +461,7 @@
 				DEVELOPMENT_TEAM = 77W89J72K4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatTheHex/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access to detect colors in real-time.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -481,6 +490,7 @@
 				DEVELOPMENT_TEAM = 77W89J72K4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhatTheHex/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access to detect colors in real-time.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

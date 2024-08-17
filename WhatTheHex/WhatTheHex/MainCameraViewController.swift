@@ -18,13 +18,7 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
         label.isUserInteractionEnabled = true
         return label
     }()
-    
-    let dotView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .red
-        return view
-    }()
-    
+
     let colorView: UIView = {
         let view = UIView()
         return view
@@ -32,22 +26,15 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
     
     let horizontalLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = .black
         return view
     }()
     let verticalLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = .black
         return view
     }()
     
-    let toggleCameraButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill")?.withRenderingMode(.alwaysTemplate)
-        button.setImage(image, for: .normal)
-        button.tintColor = .white
-        return button
-    }()
     var isUsingFrontCamera = false
     
     var previewLayer: AVCaptureVideoPreviewLayer!
@@ -59,7 +46,6 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
         super.viewDidLoad()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(copyHexToClipboard))
         colorHexLabel.addGestureRecognizer(tapGesture)
-        toggleCameraButton.addTarget(self, action: #selector(toggleCamera), for: .touchUpInside)
         checkCameraPermission()
     }
     
@@ -167,11 +153,6 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
             make.centerX.equalToSuperview()
             make.top.equalTo(colorHexLabel.snp.bottom).offset(40)
         }
-        
-        toggleCameraButton.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
-        }
 
     }
     
@@ -225,7 +206,6 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
         view.addSubview(verticalLine)
         view.addSubview(colorHexLabel)
         view.addSubview(colorView)
-        view.addSubview(toggleCameraButton)
 
         setupConstraints()
 
