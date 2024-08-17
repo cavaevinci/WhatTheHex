@@ -79,7 +79,11 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
     
     func setupConstraints() {
         tableView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            //make.bottom.equalTo(view.snp.bottom).inset(tabBarHeight)
         }
     }
     
