@@ -41,6 +41,14 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         return view
     }()
     
+    let toggleCameraButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Toggle Camera", for: .normal)
+        button.addTarget(self, action: #selector(toggleCamera), for: .touchUpInside)
+        return button
+    }()
+    var isUsingFrontCamera = false
+    
     var previewLayer: AVCaptureVideoPreviewLayer!
     
     var captureSession: AVCaptureSession!
@@ -60,6 +68,44 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             present(alert, animated: true)
         }
+    }
+    
+    func getCamera(for position: AVCaptureDevice.Position) -> AVCaptureDevice? {
+        let discoverySession = AVCaptureDevice.DiscoverySession(
+            deviceTypes: [.builtInWideAngleCamera],
+            mediaType: .video,
+            position: .unspecified
+        )
+        
+        return discoverySession.devices.first(where: { $0.position == position })
+    }
+    
+    @objc func toggleCamera() {
+        guard let currentInput = captureSession.inputs.first as? AVCaptureDeviceInput else {
+            return
+        }
+        
+        // Determine the new camera position
+        let newCameraPosition: AVCaptureDevice.Position = isUsingFrontCamera ? .back : .front
+        isUsingFrontCamera = !isUsingFrontCamera
+        
+        // Get the new camera device
+        guard let newCamera = getCamera(for: newCameraPosition) else {
+            print("No camera available")
+            return
+        }
+        
+        // Remove the old input and add the new one
+        captureSession.beginConfiguration()
+        captureSession.removeInput(currentInput)
+        guard let newInput = try? AVCaptureDeviceInput(device: newCamera) else {
+            print("Error creating new capture device input")
+            captureSession.addInput(currentInput) // Re-add the old input in case of failure
+            captureSession.commitConfiguration()
+            return
+        }
+        captureSession.addInput(newInput)
+        captureSession.commitConfiguration()
     }
     
     func setupConstraints() {
@@ -89,6 +135,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             make.width.equalTo(200)
             make.centerX.equalToSuperview()
             make.top.equalTo(colorHexLabel.snp.bottom).offset(40)
+        }
+        
+        toggleCameraButton.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            make.height.equalTo(44)
+            make.width.equalTo(200)
         }
 
     }
@@ -143,6 +196,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         view.addSubview(verticalLine)
         view.addSubview(colorHexLabel)
         view.addSubview(colorView)
+        view.addSubview(toggleCameraButton)
 
         setupConstraints()
 
