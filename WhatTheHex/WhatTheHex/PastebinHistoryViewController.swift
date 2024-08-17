@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import AVFoundation
 
 class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    private var previewLayer: AVCaptureVideoPreviewLayer!
+    private var captureSession: AVCaptureSession!
+    private var blurEffectView: UIVisualEffectView!
     
     let tableView = UITableView()
 
@@ -19,17 +24,60 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
         tableView.delegate = self
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .lightGray
+        tableView.backgroundColor = .clear
         tableView.register(PastebinHistoryTableViewCell.self, forCellReuseIdentifier: "PastebinHistoryCell")
-        view.addSubview(tableView)
-        setupConstraints()
+        
+        setupCamera()
+        setupBlurEffect()
     }
     
     func setupConstraints() {
-
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+    }
+    
+    private func setupCamera() {
+        captureSession = AVCaptureSession()
+        captureSession.sessionPreset = .photo
+
+        guard let camera = AVCaptureDevice.default(for: .video) else {
+            print("No camera available")
+            return
+        }
+        do {
+            let input = try AVCaptureDeviceInput(device: camera)
+            captureSession.addInput(input)
+        } catch {
+            print("Error setting up camera input: \(error)")
+            return
+        }
+
+        let videoOutput = AVCaptureVideoDataOutput()
+        videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
+        captureSession.addOutput(videoOutput)
+
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer.frame = view.bounds
+        previewLayer.videoGravity = .resizeAspectFill
+        view.layer.addSublayer(previewLayer)
+
+        // Start running the session on a background thread
+        DispatchQueue.global(qos: .background).async {
+            self.captureSession.startRunning()
+        }
+    }
+
+    private func setupBlurEffect() {
+        let blurEffect = UIBlurEffect(style: .light)
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        view.bringSubviewToFront(blurEffectView) // Make sure blur view is above previewLayer
+        view.addSubview(tableView)
+        view.bringSubviewToFront(tableView)
+        setupConstraints()
     }
 
     // MARK: - UITableViewDataSource
@@ -52,6 +100,12 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
 extension PastebinHistoryViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return BottomHalfPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+extension PastebinHistoryViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        // Handle any frame processing here if needed
     }
 }
 

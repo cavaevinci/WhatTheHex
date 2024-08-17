@@ -49,6 +49,32 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
         checkCameraPermission()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startCameraSession()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopCameraSession()
+    }
+    
+    private func startCameraSession() {
+        if !captureSession.isRunning {
+            DispatchQueue.global(qos: .background).async {
+                self.captureSession.startRunning()
+            }
+        }
+    }
+
+    private func stopCameraSession() {
+        if captureSession.isRunning {
+            DispatchQueue.global(qos: .background).async {
+                self.captureSession.stopRunning()
+            }
+        }
+    }
+    
     @objc func copyHexToClipboard() {
         if let hexString = colorHexLabel.text {
             UIPasteboard.general.string = hexString

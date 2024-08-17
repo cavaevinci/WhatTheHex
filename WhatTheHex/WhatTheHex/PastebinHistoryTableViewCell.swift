@@ -14,6 +14,7 @@ class PastebinHistoryTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         contentView.addSubview(historyLabel)
+        self.backgroundColor = .clear
         historyLabel.numberOfLines = 0
 
         historyLabel.snp.makeConstraints { make in
