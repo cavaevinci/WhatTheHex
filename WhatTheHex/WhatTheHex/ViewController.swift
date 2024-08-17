@@ -15,6 +15,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 0
+        label.isUserInteractionEnabled = true
         return label
     }()
     
@@ -29,13 +30,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         return view
     }()
     
-    // Create crosshair views
     let horizontalLine: UIView = {
         let view = UIView()
         view.backgroundColor = .red
         return view
     }()
-    
     let verticalLine: UIView = {
         let view = UIView()
         view.backgroundColor = .red
@@ -49,13 +48,23 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(copyHexToClipboard))
+        colorHexLabel.addGestureRecognizer(tapGesture)
         checkCameraPermission()
+    }
+    
+    @objc func copyHexToClipboard() {
+        if let hexString = colorHexLabel.text {
+            UIPasteboard.general.string = hexString
+            let alert = UIAlertController(title: "Copied!", message: "Color \(hexString) copied to clipboard.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        }
     }
     
     func setupConstraints() {
         let lineThickness: CGFloat = 2.0
                 
-        // Setup crosshair constraints
         horizontalLine.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
@@ -150,7 +159,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         let currentTime = Date()
-        if let lastTime = lastUpdateTime, currentTime.timeIntervalSince(lastTime) < 5 {
+        if let lastTime = lastUpdateTime, currentTime.timeIntervalSince(lastTime) < 1 {
             return
         }
         lastUpdateTime = currentTime
