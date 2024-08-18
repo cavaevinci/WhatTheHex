@@ -114,12 +114,6 @@ class PastebinHistoryViewController: UIViewController, UITableViewDataSource, UI
     }
 }
 
-extension PastebinHistoryViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return BottomHalfPresentationController(presentedViewController: presented, presenting: presenting)
-    }
-}
-
 extension PastebinHistoryViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         

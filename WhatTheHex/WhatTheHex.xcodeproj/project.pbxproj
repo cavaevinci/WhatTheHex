@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		1E6DFBCD2C71255B00272092 /* PastebinHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBCC2C71255B00272092 /* PastebinHistoryViewController.swift */; };
 		1E6DFBCF2C71260100272092 /* PastebinHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBCE2C71260100272092 /* PastebinHistoryTableViewCell.swift */; };
-		1E6DFBD32C712B7B00272092 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBD22C712B7B00272092 /* TabController.swift */; };
-		1E6DFBD42C712B7B00272092 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBD22C712B7B00272092 /* TabController.swift */; };
-		1E6DFBD52C712B7B00272092 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBD22C712B7B00272092 /* TabController.swift */; };
 		1E6DFBD72C71424C00272092 /* ColorHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBD62C71424C00272092 /* ColorHistoryService.swift */; };
 		1E6DFBD82C71424C00272092 /* ColorHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBD62C71424C00272092 /* ColorHistoryService.swift */; };
 		1E6DFBD92C71424C00272092 /* ColorHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DFBD62C71424C00272092 /* ColorHistoryService.swift */; };
@@ -23,9 +20,6 @@
 		1EB570332C6A5CCD0071256B /* WhatTheHexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB570322C6A5CCD0071256B /* WhatTheHexTests.swift */; };
 		1EB5703D2C6A5CCD0071256B /* WhatTheHexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB5703C2C6A5CCD0071256B /* WhatTheHexUITests.swift */; };
 		1EB5703F2C6A5CCD0071256B /* WhatTheHexUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB5703E2C6A5CCD0071256B /* WhatTheHexUITestsLaunchTests.swift */; };
-		1EBF37802C716D9B005C3221 /* BottomHalfPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF377F2C716D9B005C3221 /* BottomHalfPresentationController.swift */; };
-		1EBF37812C716D9B005C3221 /* BottomHalfPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF377F2C716D9B005C3221 /* BottomHalfPresentationController.swift */; };
-		1EBF37822C716D9B005C3221 /* BottomHalfPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF377F2C716D9B005C3221 /* BottomHalfPresentationController.swift */; };
 		1EBF37842C716DCA005C3221 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF37832C716DCA005C3221 /* NotificationService.swift */; };
 		1EBF37852C716DCA005C3221 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF37832C716DCA005C3221 /* NotificationService.swift */; };
 		1EBF37862C716DCA005C3221 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF37832C716DCA005C3221 /* NotificationService.swift */; };
@@ -55,7 +49,6 @@
 /* Begin PBXFileReference section */
 		1E6DFBCC2C71255B00272092 /* PastebinHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastebinHistoryViewController.swift; sourceTree = "<group>"; };
 		1E6DFBCE2C71260100272092 /* PastebinHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastebinHistoryTableViewCell.swift; sourceTree = "<group>"; };
-		1E6DFBD22C712B7B00272092 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		1E6DFBD62C71424C00272092 /* ColorHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHistoryService.swift; sourceTree = "<group>"; };
 		1EB570182C6A5CCA0071256B /* WhatTheHex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatTheHex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB5701B2C6A5CCA0071256B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +62,6 @@
 		1EB570382C6A5CCD0071256B /* WhatTheHexUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatTheHexUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB5703C2C6A5CCD0071256B /* WhatTheHexUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatTheHexUITests.swift; sourceTree = "<group>"; };
 		1EB5703E2C6A5CCD0071256B /* WhatTheHexUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatTheHexUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		1EBF377F2C716D9B005C3221 /* BottomHalfPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomHalfPresentationController.swift; sourceTree = "<group>"; };
 		1EBF37832C716DCA005C3221 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		1EBF37882C716FAF005C3221 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,8 +167,6 @@
 		1EBF377E2C716D74005C3221 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				1E6DFBD22C712B7B00272092 /* TabController.swift */,
-				1EBF377F2C716D9B005C3221 /* BottomHalfPresentationController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -326,9 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E6DFBD72C71424C00272092 /* ColorHistoryService.swift in Sources */,
-				1EBF37802C716D9B005C3221 /* BottomHalfPresentationController.swift in Sources */,
 				1EB570202C6A5CCA0071256B /* MainCameraViewController.swift in Sources */,
-				1E6DFBD32C712B7B00272092 /* TabController.swift in Sources */,
 				1EBF37842C716DCA005C3221 /* NotificationService.swift in Sources */,
 				1E6DFBCD2C71255B00272092 /* PastebinHistoryViewController.swift in Sources */,
 				1EB5701C2C6A5CCA0071256B /* AppDelegate.swift in Sources */,
@@ -342,8 +330,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E6DFBD42C712B7B00272092 /* TabController.swift in Sources */,
-				1EBF37812C716D9B005C3221 /* BottomHalfPresentationController.swift in Sources */,
 				1E6DFBD82C71424C00272092 /* ColorHistoryService.swift in Sources */,
 				1EBF378A2C716FAF005C3221 /* UIColor+Extension.swift in Sources */,
 				1EBF37852C716DCA005C3221 /* NotificationService.swift in Sources */,
@@ -356,8 +342,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EBF378B2C716FAF005C3221 /* UIColor+Extension.swift in Sources */,
-				1EBF37822C716D9B005C3221 /* BottomHalfPresentationController.swift in Sources */,
-				1E6DFBD52C712B7B00272092 /* TabController.swift in Sources */,
 				1E6DFBD92C71424C00272092 /* ColorHistoryService.swift in Sources */,
 				1EB5703F2C6A5CCD0071256B /* WhatTheHexUITestsLaunchTests.swift in Sources */,
 				1EBF37862C716DCA005C3221 /* NotificationService.swift in Sources */,
