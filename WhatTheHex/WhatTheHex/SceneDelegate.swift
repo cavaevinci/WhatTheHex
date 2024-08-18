@@ -13,11 +13,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
+        /*guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = TabController()
         self.window = window
-        self.window?.makeKeyAndVisible()
+        self.window?.makeKeyAndVisible()*/
+          guard let windowScene = (scene as? UIWindowScene) else { return }
+          let window = UIWindow(windowScene: windowScene)
+
+
+          // Create a Navigation Controller with MainCameraViewController as root
+          let cameraViewController = MainCameraViewController()
+          let navigationController = UINavigationController(rootViewController: cameraViewController)
+
+          window.rootViewController = navigationController
+
+          self.window = window
+          self.window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
