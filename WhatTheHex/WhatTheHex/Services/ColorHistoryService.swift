@@ -10,19 +10,20 @@ import Foundation
 class ColorHistoryService {
     static let shared = ColorHistoryService()
 
-    private var colorHistory: Set<String> = []
+    private var colorHistory: [String] = []
 
     private init() {
         loadFromUserDefaults()
     }
 
     func saveColor(hexString: String) {
-        colorHistory.insert(hexString)
+        colorHistory.removeAll { $0 == hexString }
+        colorHistory.insert(hexString, at: 0)
         saveToUserDefaults()
     }
 
     func getColorHistory() -> [String] {
-        return Array(colorHistory)
+        return colorHistory
     }
 
     private func saveToUserDefaults() {
@@ -31,7 +32,7 @@ class ColorHistoryService {
 
     private func loadFromUserDefaults() {
         if let savedColors = UserDefaults.standard.array(forKey: "colorHistory") as? [String] {
-            colorHistory = Set(savedColors)
+            colorHistory = savedColors
         }
     }
 }
