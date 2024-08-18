@@ -60,18 +60,20 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
     }
     
     private func startCameraSession() {
-        if !captureSession.isRunning {
-            DispatchQueue.global(qos: .background).async {
-                self.captureSession.startRunning()
-            }
+        guard let captureSession = captureSession, !captureSession.isRunning else {
+            return
+        }
+        DispatchQueue.global(qos: .background).async {
+            captureSession.startRunning()
         }
     }
 
     private func stopCameraSession() {
-        if captureSession.isRunning {
-            DispatchQueue.global(qos: .background).async {
-                self.captureSession.stopRunning()
-            }
+        guard let captureSession = captureSession, captureSession.isRunning else {
+            return
+        }
+        DispatchQueue.global(qos: .background).async {
+            captureSession.stopRunning()
         }
     }
     
