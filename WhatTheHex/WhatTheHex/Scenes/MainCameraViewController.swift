@@ -38,6 +38,8 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
     
     var isUsingFrontCamera = false
     
+    var previousColor: UIColor?
+
     var previewLayer: AVCaptureVideoPreviewLayer!
     var captureSession: AVCaptureSession!
     var lastUpdateTime: Date?
@@ -214,7 +216,7 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
-    
+
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         let currentTime = Date()
         if let lastTime = lastUpdateTime, currentTime.timeIntervalSince(lastTime) < 1 {
@@ -240,7 +242,7 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
             let previewCenter = CGPoint(x: previewSize.width / 2, y: previewSize.height / 2)
 
             let dotCenter = CGPoint(x: previewCenter.x + (center.x - previewCenter.x),
-                                    y: previewCenter.y + (center.y - previewCenter.y))
+                                     y: previewCenter.y + (center.y - previewCenter.y))
 
             let scaleFactorX = CGFloat(cgImage.width) / previewSize.width
             let scaleFactorY = CGFloat(cgImage.height) / previewSize.height
@@ -282,11 +284,21 @@ class MainCameraViewController: UIViewController, AVCaptureVideoDataOutputSample
             let gAvg = gTotal / CGFloat(pixelCount)
             let bAvg = bTotal / CGFloat(pixelCount)
 
-            let color = UIColor(red: rAvg / 255.0, green: gAvg / 255.0, blue: bAvg / 255.0, alpha: 1.0)
-            let hexString = String(format: "#%02X%02X%02X", Int(rAvg), Int(gAvg), Int(bAvg))
+            let newColor = UIColor(red: rAvg / 255.0, green: gAvg / 255.0, blue: bAvg / 255.0, alpha: 1.0)
 
-            self.colorHexLabel.text = hexString
-            self.colorView.backgroundColor = color
+            // Calculate the color difference
+            let colorDifference = newColor.distance(to: self.previousColor ?? .clear) // Corrected: Use the `distance(to:)` method on `UIColor`
+
+            // Set a threshold for significant color change
+            let colorDifferenceThreshold: CGFloat = 0.1 // Adjust this value as needed
+
+            if colorDifference > colorDifferenceThreshold {
+                // Update the UI
+                self.colorHexLabel.text = String(format: "#%02X%02X%02X", Int(rAvg), Int(gAvg), Int(bAvg)) // Corrected: Use the `format` string to create the hexString
+                self.colorView.backgroundColor = newColor
+
+                self.previousColor = newColor
+            }
         }
     }
 }

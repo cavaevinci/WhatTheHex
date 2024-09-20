@@ -21,4 +21,19 @@ extension UIColor {
 
         self.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
+    
+    func distance(to otherColor: UIColor) -> CGFloat {
+        var r1: CGFloat = 0.0, g1: CGFloat = 0.0, b1: CGFloat = 0.0, a1: CGFloat = 0.0
+        var r2: CGFloat = 0.0, g2: CGFloat = 0.0, b2: CGFloat = 0.0, a2: CGFloat = 0.0
+
+        self.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
+        otherColor.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
+
+        let dr = r1 - r2
+        let dg = g1 - g2
+        let db = b1 - b2
+
+        let distance = sqrt(dr * dr + dg * dg + db * db)
+        return distance
+    }
 }
